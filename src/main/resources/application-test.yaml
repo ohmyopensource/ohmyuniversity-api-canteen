@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: test_secret
+
+logging:
+  level:
+    org.ohmyopensource: DEBUG
+    org.flywaydb: DEBUG
