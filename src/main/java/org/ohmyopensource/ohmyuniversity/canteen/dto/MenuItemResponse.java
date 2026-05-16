@@ -14,8 +14,8 @@ public class MenuItemResponse {
   private String name;
   private String description;
   private MenuItemCategory category;
-  private AllergenType[] allergens;
-  private DietaryTag[] dietaryTags;
+  private String[] allergens;
+  private String[] dietaryTags;
   private boolean available;
 
   public UUID getId() {
@@ -50,19 +50,19 @@ public class MenuItemResponse {
     this.category = category;
   }
 
-  public AllergenType[] getAllergens() {
+  public String[] getAllergens() {
     return allergens;
   }
 
-  public void setAllergens(AllergenType[] allergens) {
+  public void setAllergens(String[] allergens) {
     this.allergens = allergens;
   }
 
-  public DietaryTag[] getDietaryTags() {
+  public String[] getDietaryTags() {
     return dietaryTags;
   }
 
-  public void setDietaryTags(DietaryTag[] dietaryTags) {
+  public void setDietaryTags(String[] dietaryTags) {
     this.dietaryTags = dietaryTags;
   }
 

@@ -75,6 +75,8 @@ public class MenuPreferenceService {
           "Menu item is not available: " + menuItem.getId());
     }
 
+    log.debug("Validating student campus: studentId={} requiredCampusId={}",
+        studentId, menuItem.getDailyMenu().getCanteen().getCampusId());
     validateStudentCampus(studentId, menu.getCanteen().getCampusId());
 
     if (preferenceRepository.existsByStudentIdAndMenuItemId(studentId, menuItem.getId())) {
@@ -136,9 +138,9 @@ public class MenuPreferenceService {
     return report;
   }
 
-  // -------------------------------------------------------------------------
+  // ================================
   // Private helpers
-  // -------------------------------------------------------------------------
+  // ================================
 
   private void validateStudentCampus(String studentId, String requiredCampusId) {
     StudentCampusAssignment assignment = studentCampusAssignmentRepository
@@ -150,5 +152,7 @@ public class MenuPreferenceService {
       throw new IllegalStateException(
           "Student campus does not match canteen campus: studentId=" + studentId);
     }
+
+    log.debug("Student assignment found: campusId={}", assignment.getCampusId());
   }
 }

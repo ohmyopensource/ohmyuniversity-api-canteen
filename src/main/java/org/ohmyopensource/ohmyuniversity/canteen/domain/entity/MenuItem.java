@@ -55,23 +55,24 @@ public class MenuItem {
   private MenuItemCategory category;
 
   /**
-   * List of allergens present in this item.
-   * Stored as a PostgreSQL text array — empty array means no allergens.
-   * Based on EU Regulation No 1169/2011 (14 major allergens).
+   * Allergen names stored as strings (e.g. "GLUTEN", "MILK").
+   * Values correspond to AllergenType enum names.
+   * Stored as PostgreSQL text[]. Conversion to enum happens in the DTO layer.
    */
   @Array(length = 14)
   @JdbcTypeCode(SqlTypes.ARRAY)
   @Column(name = "allergens", columnDefinition = "text[]")
-  private AllergenType[] allergens = new AllergenType[0];
+  private String[] allergens = new String[0];
 
   /**
-   * Dietary tags for this item (VEGETARIAN, VEGAN, GLUTEN_FREE).
-   * Stored as a PostgreSQL text array.
+   * Dietary tag names stored as strings (e.g. "VEGAN", "GLUTEN_FREE").
+   * Values correspond to DietaryTag enum names.
+   * Stored as PostgreSQL text[]. Conversion to enum happens in the DTO layer.
    */
   @Array(length = 3)
   @JdbcTypeCode(SqlTypes.ARRAY)
   @Column(name = "dietary_tags", columnDefinition = "text[]")
-  private DietaryTag[] dietaryTags = new DietaryTag[0];
+  private String[] dietaryTags = new String[0];
 
   /**
    * Whether this item is available today.
@@ -133,19 +134,19 @@ public class MenuItem {
     this.category = category;
   }
 
-  public AllergenType[] getAllergens() {
+  public String[] getAllergens() {
     return allergens;
   }
 
-  public void setAllergens(AllergenType[] allergens) {
+  public void setAllergens(String[] allergens) {
     this.allergens = allergens;
   }
 
-  public DietaryTag[] getDietaryTags() {
+  public String[] getDietaryTags() {
     return dietaryTags;
   }
 
-  public void setDietaryTags(DietaryTag[] dietaryTags) {
+  public void setDietaryTags(String[] dietaryTags) {
     this.dietaryTags = dietaryTags;
   }
 

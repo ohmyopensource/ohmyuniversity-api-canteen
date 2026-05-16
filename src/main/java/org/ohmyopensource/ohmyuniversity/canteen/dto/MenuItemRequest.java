@@ -21,9 +21,15 @@ public class MenuItemRequest {
   @NotNull
   private MenuItemCategory category;
 
-  private AllergenType[] allergens = new AllergenType[0];
+  /**
+   * Allergen names — must match AllergenType enum values (e.g. "GLUTEN", "MILK").
+   */
+  private String[] allergens = new String[0];
 
-  private DietaryTag[] dietaryTags = new DietaryTag[0];
+  /**
+   * Dietary tag names — must match DietaryTag enum values (e.g. "VEGAN").
+   */
+  private String[] dietaryTags = new String[0];
 
   public String getName() {
     return name;
@@ -49,19 +55,19 @@ public class MenuItemRequest {
     this.category = category;
   }
 
-  public AllergenType[] getAllergens() {
+  public String[] getAllergens() {
     return allergens;
   }
 
-  public void setAllergens(AllergenType[] allergens) {
+  public void setAllergens(String[] allergens) {
     this.allergens = allergens;
   }
 
-  public DietaryTag[] getDietaryTags() {
+  public String[] getDietaryTags() {
     return dietaryTags;
   }
 
-  public void setDietaryTags(DietaryTag[] dietaryTags) {
+  public void setDietaryTags(String[] dietaryTags) {
     this.dietaryTags = dietaryTags;
   }
 }
