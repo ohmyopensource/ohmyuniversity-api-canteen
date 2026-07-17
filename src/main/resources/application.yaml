@@ -1,15 +1,27 @@
+# ============================================================
+# OhMyUniversity! - Canteen
+# Base configuration - shared across all profiles.
+# ============================================================
+
 spring:
+  profiles:
+    default: dev
   application:
     name: ohmyuniversity-canteen
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
 
 server:
-  port: 8082
+  port: ${SERVER_PORT:8085}
 
 management:
   endpoints:
     web:
       exposure:
-        include: health, info, prometheus, metrics
+        include: health,info,prometheus,metrics
   endpoint:
     health:
       show-details: always
