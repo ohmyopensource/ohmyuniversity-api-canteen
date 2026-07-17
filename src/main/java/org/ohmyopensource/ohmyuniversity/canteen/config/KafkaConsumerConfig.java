@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.ohmyopensource.ohmyuniversity.canteen.kafka.event.StudentCampusAssignedEvent;
+import org.ohmyopensource.ohmyuniversity.canteen.kafka.event.CampusAssignmentDiscoveredEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +17,11 @@ import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
 /**
  * Kafka consumer configuration for the canteen microservice.
  *
- * Each topic has its own typed ConsumerFactory and
+ * <p>Each topic has its own typed ConsumerFactory and
  * ConcurrentKafkaListenerContainerFactory so that JacksonJsonDeserializer
  * knows exactly which class to deserialize into without needing type headers.
  *
- * ErrorHandlingDeserializer wraps each deserializer so that malformed
+ * <p>ErrorHandlingDeserializer wraps each deserializer so that malformed
  * messages are logged and skipped instead of crashing the consumer thread.
  */
 @Configuration
@@ -63,12 +63,12 @@ public class KafkaConsumerConfig {
   }
 
   // ================================
-  // student.campus.assigned
+  // campus-assignment.discovered
   // ================================
 
   @Bean
-  public ConcurrentKafkaListenerContainerFactory<String, StudentCampusAssignedEvent>
-  studentCampusAssignedContainerFactory() {
-    return containerFactory(StudentCampusAssignedEvent.class);
+  public ConcurrentKafkaListenerContainerFactory<String, CampusAssignmentDiscoveredEvent>
+  campusAssignmentDiscoveredContainerFactory() {
+    return containerFactory(CampusAssignmentDiscoveredEvent.class);
   }
 }
